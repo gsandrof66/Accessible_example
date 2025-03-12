@@ -16,6 +16,8 @@ final <- fread("./total_bed.csv") |>
 
 bootswatch_themes <- c("flatly", "vapor")
 
+base_alt <- "This plot shows time series full bed occupancy per quarter"
+
 ui <- tags$html(
   lang = "en",
   fluidPage(
@@ -71,8 +73,21 @@ server <- function(input, output, session){
              plot_bgcolor = 'black', 
              paper_bgcolor = 'black',
              font = list(color = 'white'))
-
+    
+    if(!is.null(input$board_name)){
+      list_names <- shapefile[HB %in% input$board_name]$HBName
+      final_alt <- paste0(base_alt, " for ", paste(list_names, collapse = ", "))
+    }else{
+      final_alt <- paste0(base_alt, " for all the health boards")
+    }
+    
     p <- htmlwidgets::onRender(p,"function(el, x) {el.setAttribute('aria-label', 'This plot shows time series full bed occupancy per quarter');}")
+    # Add dynamic alt text using htmlwidgets::onRender
+    p <- htmlwidgets::onRender(p, sprintf("
+      function(el, x) {
+        el.setAttribute('aria-label', 'Bar plot showing data for %s');
+      }
+    ", final_alt))
     p
   })
 }
