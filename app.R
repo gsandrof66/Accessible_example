@@ -81,11 +81,10 @@ server <- function(input, output, session){
       final_alt <- paste0(base_alt, " for all the health boards")
     }
     
-    p <- htmlwidgets::onRender(p,"function(el, x) {el.setAttribute('aria-label', 'This plot shows time series full bed occupancy per quarter');}")
     # Add dynamic alt text using htmlwidgets::onRender
     p <- htmlwidgets::onRender(p, sprintf("
       function(el, x) {
-        el.setAttribute('aria-label', 'Bar plot showing data for %s');
+        el.setAttribute('aria-label', '%s');
       }
     ", final_alt))
     p
