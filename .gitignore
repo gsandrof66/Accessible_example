@@ -43,6 +43,9 @@
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
+# exclude rsconnect
+rsconnect/
+
 # Documentation files
 docs/
 
