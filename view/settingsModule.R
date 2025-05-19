@@ -1,12 +1,9 @@
 settingsUI <- function(id) {
   ns <- NS(id)
-  h2("App Settings")
   sidebarLayout(
-    sidebarPanel(h3("UI Theme")),
+    sidebarPanel(h2("UI Theme")),
     mainPanel(
-      # materialSwitch(inputId = "dark_mode", label = "Dark Mode",
-      #                status = "primary")
-      
+      h3("Settings UI"),
       input_switch(ns("dark_mode"), "Dark mode"),
       verbatimTextOutput(ns("theme_status"))
     )

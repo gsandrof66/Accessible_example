@@ -3,11 +3,14 @@ library(bslib) # 0.9.0
 library(data.table) # 1.16.4
 library(dplyr) # 1.1.4
 library(dtplyr) # 1.3.1
-library(sf) # 1.0.19
 library(plotly) # 4.10.4
+library(leaflet)
+library(sf) # 1.0.19
+library(glue)
 
 source("./view/settingsModule.R")
 source("./view/tsbedModule.R")
+source("./view/tsmapModule.R")
 
 theme_color = list(bgcolor = "white", fgcolor = "black")
 
@@ -20,7 +23,7 @@ ui <- page_navbar(
   window_title = "My insights", 
   nav_panel("Home", h2("Welcome to Home")),
   nav_panel("Data", plotUI("tsbed")),
-  nav_panel("Maps", h2("Map review")),
+  nav_panel("Maps", mapUI("maps")),
   nav_panel("Settings", settingsUI("settings")),
   theme = bs_theme(version = 5, bootswatch = NULL, 
                    bg = theme_color$bgcolor, fg = theme_color$fgcolor)
@@ -29,6 +32,7 @@ ui <- page_navbar(
 server <- function(input, output, session){
   theme_switch <- settingsServer("settings", session)
   plotServer("tsbed", theme_switch)
+  mapServer("maps", theme_witch)
 }
 
 shinyApp(ui, server)

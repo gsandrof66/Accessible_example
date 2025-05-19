@@ -14,6 +14,9 @@ read_files <- function(file, extension_file, columns = NULL){
            },
            "xlsx" = {
              return(as.data.table(readxl::read_excel(file)))
+           },
+           "shp" = {
+             return(st_read(file))
            }
     )
   },

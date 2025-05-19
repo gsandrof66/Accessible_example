@@ -1,12 +1,12 @@
 source("./model/Load_data.R")
 
-data_base_list <- data_base()
+data_base_list <- data_tsbed()
 
 plotUI <- function(id) {
   ns <- NS(id)
-  h2("Data Section")
   sidebarLayout(
     sidebarPanel(
+      h3("Time series"),
       selectInput(ns("board_name"), "Choose a board name:",
                   choices = data_base_list[["hb_choices"]],
                   multiple = TRUE),
