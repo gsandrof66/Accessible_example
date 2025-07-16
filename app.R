@@ -5,6 +5,8 @@ library(dplyr) # 1.1.4
 library(dtplyr) # 1.3.1
 library(plotly) # 4.10.4
 library(leaflet)
+library(promises)
+library(future)
 library(sf) # 1.0.19
 library(glue)
 
@@ -20,12 +22,12 @@ ui <- page_navbar(
     target = "_blank",  # Opens the link in a new tab
     tags$img(src = "img/demo.png", height = "40px", style = "margin-right:80px;")
   ),
-  window_title = "My insights", 
+  window_title = "My insights",
   nav_panel("Home", h2("Welcome to Home")),
   nav_panel("Data", plotUI("tsbed")),
   nav_panel("Maps", mapUI("maps")),
   nav_panel("Settings", settingsUI("settings")),
-  theme = bs_theme(version = 5, bootswatch = NULL, 
+  theme = bs_theme(version = 5, bootswatch = NULL,
                    bg = theme_color$bgcolor, fg = theme_color$fgcolor)
 )
 
