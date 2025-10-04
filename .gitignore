@@ -50,7 +50,6 @@ rsconnect/
 docs/
 
 # Data files
-data/
 # *.csv
 *.tsv
 *.xlsx
